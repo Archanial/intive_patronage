@@ -1,0 +1,23 @@
+CREATE TABLE Address(
+	Id int NOT NULL IDENTITY(1,1),
+	Country NVARCHAR(100) NOT NULL,
+	City NVARCHAR(100) NOT NULL,
+	PostCode NVARCHAR(10) NOT NULL,
+	Street NVARCHAR(100) NOT NULL,
+	HouseNumber NVARCHAR(10) NOT NULL,
+	LocalNumber NVARCHAR(10),
+	PRIMARY KEY(Id)
+);
+
+
+CREATE TABLE Users(
+	Id int NOT NULL IDENTITY(1,1),
+	FirstName NVARCHAR(50) NOT NULL,
+	LastName NVARCHAR(50) NOT NULL,
+	DateOfBirth Datetime2(0) NOT NULL,
+	Gender bit NOT NULL,
+	Weight decimal(5,2),
+	AddressId int NOT NULL,
+	PRIMARY KEY(Id),
+	FOREIGN KEY(AddressId) REFERENCES Address(Id)
+);

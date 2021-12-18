@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "5685393b-f448-4b7a-a8d9-f713e9a6dd5e",
+		"name": "intive_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/{{api}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{api}}"
+					]
+				},
+				"description": "Gets all users from the database."
+			},
+			"response": []
+		},
+		{
+			"name": "Get single users with details",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/{{api}}/?id={{id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{api}}",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{id}}",
+							"description": "ID of the user"
+						}
+					]
+				},
+				"description": "Gets single user of given ID with the address associated to him. Fails if no user with given ID is found."
+			},
+			"response": []
+		},
+		{
+			"name": "Create user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"FirstName\": \"FirstName\",\r\n        \"LastName\": \"LastName\",\r\n        \"DateOfBirth\": \"1970-01-01T00:00:00\",\r\n        \"Gender\": false,\r\n        \"Weight\": 10.10\r\n    },\r\n    \"address\": {\r\n        \"Country\": \"Country\",\r\n        \"City\": \"City\",\r\n        \"PostCode\": \"0000\",\r\n        \"Street\": \"Street\",\r\n        \"HouseNumber\": \"10\",\r\n        \"LocalNumber\": \"10\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{api}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{api}}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{id}}",
+							"description": "ID of the user",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Creates user with given parameters in json request body. If the address given is the same as one that is already existing, database will link the added user with already existing address."
+			},
+			"response": []
+		},
+		{
+			"name": "Edit user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"FirstName\": \"FirstName\",\r\n        \"LastName\": \"LastName\",\r\n        \"DateOfBirth\": \"1970-01-01T00:00:00\",\r\n        \"Gender\": false,\r\n        \"Weight\": 10.10\r\n    },\r\n    \"address\": {\r\n        \"Country\": \"Country\",\r\n        \"City\": \"City\",\r\n        \"PostCode\": \"0000\",\r\n        \"Street\": \"Street\",\r\n        \"HouseNumber\": \"10\",\r\n        \"LocalNumber\": \"10\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{api}}/?id={{id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{api}}",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{id}}",
+							"description": "ID of the user"
+						}
+					]
+				},
+				"description": "Edits the user with given ID. If the address of the user was changed it may create new address if old address has more than one user attached to it."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/{{api}}/?id={{id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{api}}",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{id}}",
+							"description": "ID of the user"
+						}
+					]
+				},
+				"description": "Deletes the user with given ID. If the address associated with the user has only one user linked to it, the address will be deleted as well."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://localhost:44313"
+		},
+		{
+			"key": "api",
+			"value": "api/users"
+		},
+		{
+			"key": "id",
+			"value": "1"
+		}
+	]
+}
